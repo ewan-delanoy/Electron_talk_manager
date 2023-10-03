@@ -1,43 +1,40 @@
-function populateTable(rows, type) {
-    const table = document.getElementById(type)
+function populateTasksTable(rows) {
+    const table = document.getElementById("tasks")
 
     rows.forEach(row => {
         const tr = document.createElement('tr')
 
-        const th = document.createElement('th')
-        th.scope = 'row'
-        th.textContent = row.id
+        const tdLabel = document.createElement('td')
+        tdLabel.textContent = row.label
 
-        const tdTitle = document.createElement('td')
-        tdTitle.textContent = row.title
+        const tdDescription = document.createElement('td')
+        tdDescription.textContent = row.description
 
-        const tdPrice = document.createElement('td')
-        tdPrice.textContent = row.price + ' €'
+        const tdStatus = document.createElement('td')
+        tdStatus.textContent = row.status
 
         const tdButtons = document.createElement('td')
 
-        const editBtn = document.createElement('button')
-        editBtn.textContent = 'Modif.'
-        editBtn.classList.add('btn', 'btn-outline-warning', 'mx-2')
-
         const deleteBtn = document.createElement('button')
-        deleteBtn.textContent = 'Suppr.'
+        deleteBtn.textContent = 'Supprimer'
         deleteBtn.classList.add('btn', 'btn-outline-danger', 'mx-2')
 
-        tdButtons.append(editBtn, deleteBtn)
+        tdButtons.append(deleteBtn)
 
-        tr.append(th, tdTitle, tdPrice, tdButtons)
+        tr.append(tdLabel, tdDescription, tdStatus, tdButtons)
 
         table.appendChild(tr)
     })
 }
 
+
 window.ipcRenderer.onceInitData(handleInitData)
 
-function handleInitData(e, accountData) {
+function handleInitData(e, taskData) {
+    /*
     const incomes = accountData.filter(d => d.type === 'income')
     populateTable(incomes, 'income')
+    */
 
-    const expenses = accountData.filter(d => d.type === 'expense')
-    populateTable(expenses, 'expense')
+    populateTasksTable(taskData);
 }

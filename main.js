@@ -1,20 +1,19 @@
 const {app, BrowserWindow} = require('electron');
 const path = require('path');
 
+
 const data = [
     {
-        id: 1,
-        title: 'Vidange voiture',
-        price: 150,
-        type: 'income'
+        label : 'Apprendre NodeJS',
+        description : 'Apprendre les bases de NodeJS & Express',
+        status : false
     },
     {
-        id: 2,
-        title: 'Filtre à huile',
-        price: 80,
-        type: 'expense'
+        label : 'Apprendre Electron',
+        description : 'Apprendre les bases de la création d\'application Desktop',
+        status : false
     }
-]
+];
 
 function createWindow(viewName,viewData=null,width =1400,height = 1000) {
     const win = new BrowserWindow({
